@@ -6,10 +6,20 @@ Pasos:
 -recorrer el id y lo muestre en la consola
 */
 
-const crearBotones=()=>{
-    return ["Playa", "Pueblo", "Paseo", "Bugalows", "Puente","Direcciones", "Plaza"];
-}
+const crearBotones=["Playa", "Pueblo", "Paseo", "Bugalows", "Puente","Direcciones", "Plaza"];
 
+crearBotones.forEach((elemento)=>{
+   console.log(elemento);
+
+});
+
+const button=document.createElement("button");
+button.Type="button";
+button.innerText= "Boton";
+document.body.appendChild(button);
+console.log(crearBotones);
+
+/*
 const arraytarjetasFiltradas= [
 {
         src:"image/viajes/1.jpg",
@@ -70,16 +80,14 @@ const arraytarjetasFiltradas= [
         tag:["Pueblo", "Paseo", "Puente","Direcciones", "Plaza"],
     },
 ];
+*/
 
 
 
-const button=document.createElement("button");
-button.Type="button";
-button.innerText= "Boton";
-document.body.appendChild(button);
-console.log(crearBotones);
 
 
+
+/*
 boton.addEventListener("click",()=> {
   saludar("Paseo")   
 
@@ -94,4 +102,4 @@ boton.addEventListener("click",()=> {
 
 });
 
-
+*/
