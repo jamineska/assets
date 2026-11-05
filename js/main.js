@@ -17,10 +17,16 @@ console.log(fotoCabecera);
 console.log(frase);
 console.log(galeria);*/
 
+const imagenPrincipal =(filtradas)=>{
+   console.log(filtradas[0]);
+};
 
 
-const crearBotones = ["Playa", "Pueblo", "Paseo", "Bugalows", "Puente", "Direcciones", "Plaza"]; /*creamos el array en función de los tags*./
 
+
+/*primero accedemos que queramos a través del selctor */
+const crearBotones = ["Playa", "Pueblo", "Paseo", "Bugalows", "Puente", "Direcciones", "Plaza"]; /*creamos el array en función de los tags */
+/*
 
 /*cremos nuetras tarjetas*/
 const arraytarjetas = [
@@ -30,7 +36,7 @@ const arraytarjetas = [
         titulo: "Descanso junto al mar",
         descripcion: "Disfruta de las mejores playas tropicales y de aguas cristalinas",
         alt: "Playa paraíso",
-        tag: ["Playa", "Bugalows"],
+        tag: ["Playa", "Bugalows","Paseo"],
     },
 
     {
@@ -38,7 +44,7 @@ const arraytarjetas = [
         titulo: "Fantásticas vacaciones",
         descripcion: "Descanso esclusivo en medio del oceano y la naturaleza",
         alt: "Bungalows sobre el mar",
-        tag: ["Playa", "Bugalows", "Pueblo"],
+        tag: ["Playa", "Bugalows"],
     },
 
     {
@@ -46,7 +52,7 @@ const arraytarjetas = [
         titulo: "Ruta por el mundo",
         descripcion: "Explora los destino más icónico y emblemáticos del planeta",
         alt: "todas las direcciones",
-        tag: ["Pueblo", "Paseo", "Bugalows", "Direcciones"],
+        tag: ["Pueblo", "Bugalows", "Direcciones"],
     },
 
 
@@ -55,7 +61,7 @@ const arraytarjetas = [
         titulo: "Jardin maravilloso",
         descripcion: "Descruba la increíble historia y arquitetura de Sevilla",
         alt: "PLaza de España",
-        tag: ["Pueblo", "Paseo", "Puente", "Direcciones", "Plaza"],
+        tag: ["Pueblo", "Plaza"],
     },
 
 
@@ -64,7 +70,7 @@ const arraytarjetas = [
         titulo: "Famoso puente",
         Descripcion: "Conozca nuestras rutas por el interior",
         alt: "Puente",
-        tag: ["Pueblo", "Paseo", "Puente"],
+        tag: ["Puente"],
 
     },
 
@@ -73,7 +79,7 @@ const arraytarjetas = [
         titulo: "Descubra las rutas por la costa",
         descripcion: "Para amantes del mar",
         alt: "Paseo por la orla",
-        tag: ["Playa", "Paseo", "Plaza"],
+        tag: ["Playa", "Paseo"],
     },
 
     {
@@ -81,7 +87,7 @@ const arraytarjetas = [
         titulo: "Ruta del vino",
         descripcion: "Visite las mejores bodegas",
         alt: "Pueblo",
-        tag: ["Pueblo", "Paseo", "Puente", "Direcciones", "Plaza"],
+        tag: ["Pueblo", "Direcciones", "Plaza"],
     },
 ];
 
@@ -92,6 +98,7 @@ document.addEventListener('click', (ev) => {
         let boton = ev.target
         const tag = boton.id //hemos asignado al tag, el "id boton"
         let filtradas = filtrarImagenes(tag); /*llama la función que filtra las tarjetas y las guarda en una variable llamadas "filtradas"*/
+        imagenPrincipal(filtradas);//invocación. al dare al boton, pintar primer imagen
         galeria.innerHTML ="" ;//para que las imágenes no se repitan.
         tarjetitas(filtradas); //llama la funcion que pinta las tarjetas filtradas
         
@@ -127,26 +134,53 @@ function hacerBotonzitos() {
 
     });
 };
-hacerBotonzitos(); //envocando la función
 
+
+/*<article>
+    <h2>Titulo</h2>
+    <div><img src="" alt=""></div>
+    <p>descrpcio</p>
+</article>*/
 
 function tarjetitas(arraytarjetas) {
     arraytarjetas.forEach((elemento) => {
+        
+        let articulo = document.createElement('article');
+        let titulillo = document.createElement('h2');    
+        let cajita = document.createElement('div');
         let imagen = document.createElement('img');
+        
         imagen.src = elemento.src
         imagen.alt = elemento.alt
-        tarjeta.append(imagen);
-        //console.log(boton);
-
-    });
+        titulillo.textContent= elemento.titulo
+        cajita.append(imagen); /*imagen dentro del div respetando la jerarquia del html*/
+        articulo.append(titulillo, cajita); /*div dentro del article respetando la jerarquia del html*/
+        tarjeta.append(articulo) /*article dentro de la tarjeta respetando la jerarquia del html*/
+        });
 };
-tarjetitas(arraytarjetas); //envocando la función
 
+hacerBotonzitos(); //envocando la función
+/*
+document.addEventListener("DOMContentLoaded", function() {
+const fotoPrincipal= [
+"image/viajes/viajes-1.jpg",
+"image/viajes/viajes-2.jpg",
+"image/viajes/viajes-3.jpg",
+"image/viajes/viajes-4.jpg",
+"image/viajes/viajes-5.jpg",
+"image/viajes/viajes-6.jpg",
+];
 
+//seleccionamos la etiqueta "header" usando query selector
+    const elementoHeader=document.querySelector("main");
+    imgViajes.classList.add("fotoCAbecera");
 
+    //añadimos atributos src y alt conrespondentes
+    const indiceAleatorio = Math.floor(Math.random() * fotoCabecera.length);
+    imgViajes.src=fotoCabecera[indiceAleatorio];
+    imgBanner.alt="Viajes dinámico aleatorio de fotoCabecera";
 
-
-
-
-
-
+    //añadimos elemento completo creado al header
+    elementoHeader.appendChild(imgViajes);
+});
+*/
